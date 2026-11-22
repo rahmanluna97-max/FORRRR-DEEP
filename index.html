@@ -1,0 +1,797 @@
+ 
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMO ♡ DEEP</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Telugu:wght@400;500;600&family=Cormorant+Garamond:ital,wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --ocean-dark: #020b18;
+    --ocean: #071d35;
+    --ocean-light: #123e65;
+    --blue: #8cc8f2;
+    --white: #eaf6ff;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--ocean-dark);
+    color: var(--white);
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(31, 100, 151, 0.25),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #06172c 0%,
+            #09243e 40%,
+            #041222 100%
+        );
+    z-index: -3;
+}
+
+.glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(40, 123, 190, 0.13);
+    filter: blur(100px);
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+}
+
+/* RAIN */
+
+.rain {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.drop {
+    position: absolute;
+    width: 1px;
+    height: 90px;
+    background: linear-gradient(
+        transparent,
+        rgba(180, 220, 255, 0.3)
+    );
+    animation: rainfall linear infinite;
+}
+
+@keyframes rainfall {
+    0% {
+        transform: translateY(-120px);
+    }
+
+    100% {
+        transform: translateY(110vh);
+    }
+}
+
+/* PARTICLES */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #a9dfff;
+    box-shadow: 0 0 12px #a9dfff;
+    animation: sparkle 4s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.1;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+}
+
+/* WAVES */
+
+.wave-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+.wave {
+    position: absolute;
+    bottom: -30px;
+    width: 200%;
+    height: 160px;
+    border-radius: 45%;
+    background: rgba(21, 91, 145, 0.2);
+    animation: wave 12s linear infinite;
+}
+
+.wave:nth-child(2) {
+    bottom: -50px;
+    animation-duration: 18s;
+    opacity: 0.5;
+}
+
+.wave:nth-child(3) {
+    bottom: -70px;
+    animation-duration: 24s;
+    opacity: 0.3;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+/* MAIN */
+
+.main {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+}
+
+.content {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+/* LOGO */
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    letter-spacing: 8px;
+    color: #c8e9ff;
+    margin-bottom: 55px;
+    text-shadow: 0 0 25px rgba(139, 203, 255, 0.4);
+    animation: appear 2s ease;
+}
+
+.logo span {
+    color: #80bce8;
+    letter-spacing: 3px;
+}
+
+/* LOTUS */
+
+.lotus {
+    font-size: 68px;
+    display: inline-block;
+    margin-bottom: 25px;
+    animation: float 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px rgba(147, 213, 255, 0.25));
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(3deg);
+    }
+}
+
+/* DECORATION */
+
+.decor {
+    color: #6499c1;
+    font-size: 13px;
+    letter-spacing: 8px;
+    margin-bottom: 25px;
+}
+
+/* CARD */
+
+.card {
+    position: relative;
+    padding: 45px 30px;
+    border-radius: 30px;
+
+    background: rgba(10, 31, 53, 0.45);
+
+    border: 1px solid rgba(160, 213, 255, 0.18);
+
+    box-shadow:
+        0 20px 80px rgba(0, 0, 0, 0.35),
+        inset 0 0 40px rgba(72, 143, 203, 0.04);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    animation: appear 2s ease;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    padding: 1px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(173, 222, 255, 0.3),
+        transparent 40%,
+        rgba(97, 162, 224, 0.15)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+}
+
+/* TEXT */
+
+.small-text {
+    color: #8bb9df;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-weight: 400;
+    font-size: clamp(21px, 5vw, 31px);
+    line-height: 2.1;
+    color: #e7f5ff;
+
+    text-shadow:
+        0 0 25px rgba(114, 182, 245, 0.12);
+
+    margin-bottom: 25px;
+}
+
+.message {
+    font-size: clamp(15px, 4vw, 19px);
+    line-height: 2.3;
+    color: #b9d6ed;
+}
+
+.highlight {
+    color: #d9efff;
+    text-shadow: 0 0 15px rgba(148, 209, 255, 0.2);
+}
+
+.divider {
+    width: 100px;
+    height: 1px;
+    margin: 30px auto;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #7bb6e5,
+        transparent
+    );
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+button {
+    position: relative;
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background: rgba(25, 75, 117, 0.35);
+
+    border: 1px solid rgba(153, 210, 255, 0.3);
+
+    color: #eaf6ff;
+
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.4s;
+
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    transform: translateY(-4px);
+
+    background: rgba(54, 119, 175, 0.3);
+
+    border-color: rgba(177, 225, 255, 0.6);
+
+    box-shadow:
+        0 0 25px rgba(90, 166, 230, 0.2);
+}
+
+.yes-button {
+    background: rgba(58, 112, 159, 0.3);
+}
+
+/* REVEAL */
+
+.reveal {
+    display: none;
+
+    margin-top: 35px;
+    padding: 30px 20px;
+
+    border-radius: 25px;
+
+    background: rgba(5, 23, 42, 0.75);
+
+    border: 1px solid rgba(143, 204, 255, 0.2);
+
+    animation: reveal 1.5s ease;
+}
+
+.reveal.show {
+    display: block;
+}
+
+.reveal-lotus {
+    font-size: 55px;
+    margin: 20px 0;
+    animation: float 4s ease-in-out infinite;
+}
+
+.reveal h2 {
+    font-weight: 400;
+    font-size: 25px;
+    color: #d9efff;
+    margin-bottom: 20px;
+}
+
+.reveal p {
+    font-size: 16px;
+    line-height: 2.3;
+    color: #bdd9ef;
+}
+
+/* NO RESPONSE */
+
+.response {
+    display: none;
+    margin-top: 25px;
+    color: #9fc8e9;
+    font-size: 15px;
+    animation: appear 1s ease;
+}
+
+.response.show {
+    display: block;
+}
+
+/* FOOTER */
+
+.footer {
+    margin-top: 50px;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+
+    letter-spacing: 5px;
+    color: #5d88ad;
+
+    animation: appear 3s ease;
+}
+
+/* ANIMATION */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* HEARTS */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 20px;
+    color: #8dcaff;
+    pointer-events: none;
+    z-index: 10;
+    animation: heartRise 5s linear forwards;
+}
+
+@keyframes heartRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) rotate(180deg);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 23px;
+        margin-bottom: 35px;
+    }
+
+    .card {
+        padding: 35px 20px;
+    }
+
+    .lotus {
+        font-size: 55px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    button {
+        padding: 13px 22px;
+        font-size: 14px;
+    }
+
+    .footer {
+        margin-top: 40px;
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="glow"></div>
+
+<div class="rain" id="rain"></div>
+<div class="particles" id="particles"></div>
+
+<div class="wave-container">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+<main class="main">
+
+<div class="content">
+
+    <div class="logo">
+        LUMO <span>♡</span> DEEP
+    </div>
+
+    <div class="lotus">
+        🪷
+    </div>
+
+    <div class="decor">
+        ✦ ───────── ✦
+    </div>
+
+    <div class="card">
+
+        <div class="small-text">
+            ఒక చిన్న మనసులోని మాట
+        </div>
+
+        <h1>
+            ఆకాశం మేఘాలతో వర్షమై...<br>
+            కలలను తడిపేస్తూ...
+        </h1>
+
+        <div class="divider"></div>
+
+        <div class="message">
+
+            నువ్వు కూడా నాతో పాటు<br>
+            <span class="highlight">
+                దారిలో వర్షంలో తడుస్తావా???
+            </span>
+
+            <br><br>
+
+            చేతులు పట్టుకుని...<br>
+            ఒక గుచ్చెడు పద్మాలు చేతిలో పట్టుకుని...
+
+            <br><br>
+
+            <span class="highlight">
+                తడవాలనుకుంటున్నాను నీతో పాటు....
+            </span>
+
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="buttons">
+
+            <button
+                class="yes-button"
+                onclick="yesResponse()">
+
+                అవును 🪷
+
+            </button>
+
+            <button
+                onclick="noResponse()">
+
+                ఆలోచిస్తాను...
+
+            </button>
+
+        </div>
+
+        <div class="response" id="response"></div>
+
+        <div class="reveal" id="reveal">
+
+            <h2>
+                అయితే... 🌧️
+            </h2>
+
+            <div class="reveal-lotus">
+                🪷
+            </div>
+
+            <p>
+
+                వర్షపు చినుకుల మధ్య...<br>
+
+                నీలి ఆకాశం కింద...<br>
+
+                చేతిలో పద్మాలు...<br>
+
+                <br>
+
+                ఈ అందమైన క్షణాన్ని<br>
+                ఒక జ్ఞాపకంగా దాచుకుందాం...
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        LUMO ♡ DEEP
+    </div>
+
+</div>
+
+</main>
+
+<script>
+
+/* RAIN */
+
+const rain = document.getElementById("rain");
+
+for(let i = 0; i < 130; i++){
+
+    const drop = document.createElement("div");
+
+    drop.className = "drop";
+
+    drop.style.left = Math.random() * 100 + "%";
+
+    drop.style.animationDuration =
+        (0.6 + Math.random() * 1.4) + "s";
+
+    drop.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    drop.style.opacity =
+        Math.random() * 0.45;
+
+    rain.appendChild(drop);
+
+}
+
+/* PARTICLES */
+
+const particles =
+    document.getElementById("particles");
+
+for(let i = 0; i < 70; i++){
+
+    const particle =
+        document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.top =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDelay =
+        Math.random() * 5 + "s";
+
+    particle.style.animationDuration =
+        (2 + Math.random() * 4) + "s";
+
+    particles.appendChild(particle);
+
+}
+
+/* YES */
+
+function yesResponse(){
+
+    const reveal =
+        document.getElementById("reveal");
+
+    const response =
+        document.getElementById("response");
+
+    reveal.classList.add("show");
+
+    response.classList.remove("show");
+
+    createHearts();
+
+    reveal.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+/* THINK */
+
+function noResponse(){
+
+    const response =
+        document.getElementById("response");
+
+    response.innerHTML =
+        "నీ సమాధానం కోసం ప్రశాంతంగా ఎదురుచూస్తాను... 🌧️";
+
+    response.classList.add("show");
+
+}
+
+/* FLOATING HEARTS */
+
+function createHearts(){
+
+    const symbols = [
+        "♡",
+        "♥",
+        "🪷",
+        "✦"
+    ];
+
+    for(let i = 0; i < 30; i++){
+
+        setTimeout(() => {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className = "heart";
+
+            heart.innerHTML =
+                symbols[
+                    Math.floor(
+                        Math.random() * symbols.length
+                    )
+                ];
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+
+        }, i * 100);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
